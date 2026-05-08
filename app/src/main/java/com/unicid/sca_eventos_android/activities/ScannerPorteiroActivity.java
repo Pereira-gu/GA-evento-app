@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -6,17 +6,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-
-// ESTES SÃO OS IMPORTS QUE RESOLVEM OS ERROS DE SYMBOL
+import com.google.gson.JsonObject;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanIntentResult;
 import com.journeyapps.barcodescanner.ScanOptions;
-
-import com.google.gson.JsonObject;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.api.ApiClient;
+import com.unicid.sca_eventos_android.api.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity que realiza a leitura e validação de QR Codes dos alunos.
+ * Utiliza a câmera para escanear e o backend para validar o acesso ao evento selecionado.
+ */
 public class ScannerPorteiroActivity extends AppCompatActivity {
 
     private TextView tvResultado, tvNomeEventoSelecionado;
@@ -32,7 +36,6 @@ public class ScannerPorteiroActivity extends AppCompatActivity {
         Button btnAbrirScanner = findViewById(R.id.btnAbrirScanner);
         Button btnVoltar = findViewById(R.id.btnVoltarSelecao);
 
-        // Recuperar dados do evento vindos da tela de seleção
         eventoId = getIntent().getStringExtra("EVENTO_ID");
         String eventoNome = getIntent().getStringExtra("EVENTO_NOME");
 
@@ -52,11 +55,9 @@ public class ScannerPorteiroActivity extends AppCompatActivity {
         });
     }
 
-    // Gerenciador do resultado utilizando ScanIntentResult
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(
             new ScanContract(),
             result -> {
-                // ScanIntentResult é a classe que contém o conteúdo lido
                 ScanIntentResult scanResult = (ScanIntentResult) result;
                 if (scanResult.getContents() != null) {
                     validarNoServidor(scanResult.getContents());
@@ -72,7 +73,7 @@ public class ScannerPorteiroActivity extends AppCompatActivity {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
         JsonObject requestData = new JsonObject();
-        requestData.addProperty("qrCodeData", qrContent); // Formato esperado pelo Backend: UUID;Timestamp
+        requestData.addProperty("qrCodeData", qrContent);
         requestData.addProperty("eventoId", eventoId);
 
         apiService.validarAcesso(requestData).enqueue(new Callback<String>() {

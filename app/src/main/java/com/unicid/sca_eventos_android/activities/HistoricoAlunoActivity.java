@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,11 +7,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.adapters.HistoricoAdapter;
+import com.unicid.sca_eventos_android.api.ApiClient;
+import com.unicid.sca_eventos_android.api.ApiService;
+import com.unicid.sca_eventos_android.models.Inscricao;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Exibe o histórico de eventos em que o aluno confirmou presença.
+ */
 public class HistoricoAlunoActivity extends AppCompatActivity {
 
     private RecyclerView rvHistorico;

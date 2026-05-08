@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,7 +13,13 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.unicid.sca_eventos_android.R;
+import java.util.Locale;
 
+/**
+ * Activity que gera e exibe o QR Code dinâmico do aluno para validação de entrada.
+ * O código é renovado periodicamente para segurança.
+ */
 public class QrCodeAlunoActivity extends AppCompatActivity {
 
     private ImageView ivQrCode;
@@ -47,7 +53,7 @@ public class QrCodeAlunoActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 int minutes = (int) (millisUntilFinished / 1000) / 60;
                 int seconds = (int) (millisUntilFinished / 1000) % 60;
-                tvTimer.setText(String.format("O código expira em: %02d:%02d", minutes, seconds));
+                tvTimer.setText(String.format(Locale.getDefault(), "O código expira em: %02d:%02d", minutes, seconds));
             }
 
             @Override

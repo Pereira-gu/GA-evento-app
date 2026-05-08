@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,11 +8,20 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.adapters.EventoAdapter;
+import com.unicid.sca_eventos_android.api.ApiClient;
+import com.unicid.sca_eventos_android.api.ApiService;
+import com.unicid.sca_eventos_android.models.Evento;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Tela de seleção de eventos para o perfil de Porteiro.
+ * Lista todos os eventos disponíveis para controle de acesso.
+ */
 public class SelecaoEventoActivity extends AppCompatActivity {
 
     private RecyclerView rvEventos;

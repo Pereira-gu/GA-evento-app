@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +8,16 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.JsonObject;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.api.ApiClient;
+import com.unicid.sca_eventos_android.api.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity responsável pelo cadastro de novos usuários (Alunos ou Porteiros).
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -56,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Registro solicitado com sucesso!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    // Log para descobrir o que o servidor respondeu (ex: 400, 401, 500)
                     Log.e("SCA_ERRO", "Código de erro: " + response.code());
                     Toast.makeText(RegisterActivity.this, "Erro no servidor: " + response.code(), Toast.LENGTH_SHORT).show();
                 }

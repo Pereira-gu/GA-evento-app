@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,8 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.models.Evento;
 import java.util.List;
 
+/**
+ * Adaptador para exibição de uma lista de Eventos no RecyclerView.
+ */
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoViewHolder> {
 
     private List<Evento> eventos;

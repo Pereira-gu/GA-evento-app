@@ -1,4 +1,4 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,10 +9,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.JsonObject;
+import com.unicid.sca_eventos_android.R;
+import com.unicid.sca_eventos_android.api.ApiClient;
+import com.unicid.sca_eventos_android.api.ApiService;
+import com.unicid.sca_eventos_android.models.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity responsável pelo controle de acesso ao aplicativo.
+ * Gerencia a autenticação do usuário e a persistência da sessão.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etSenha;
@@ -23,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // VERIFICAÇÃO DE SESSÃO: Se já estiver logado, pula o login [cite: 197]
         SharedPreferences prefs = getSharedPreferences("SCA_PREFS", MODE_PRIVATE);
         if (prefs.contains("USER_ID")) {
             direcionarUsuario(prefs.getString("USER_PERFIL", "CLIENTE"));
@@ -61,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse user = response.body();
 
-                    // SALVAR SESSÃO [cite: 108, 197]
                     SharedPreferences.Editor editor = getSharedPreferences("SCA_PREFS", MODE_PRIVATE).edit();
                     editor.putString("USER_ID", user.getId());
                     editor.putString("USER_NOME", user.getNome());

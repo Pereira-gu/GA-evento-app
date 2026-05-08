@@ -1,5 +1,8 @@
-package com.unicid.sca_eventos_android;
+package com.unicid.sca_eventos_android.models;
 
+/**
+ * Modelo que representa um Evento no sistema.
+ */
 public class Evento {
     private String id;
     private String nome;
@@ -17,6 +20,6 @@ public class Evento {
 
     @Override
     public String toString() {
-        return nome; // Útil para simplificar o adaptador se usarmos um Spinner
+        return nome;
     }
 }
