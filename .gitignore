@@ -1,0 +1,40 @@
+# Gradle files
+.gradle/
+build/
+
+# Android Studio / IntelliJ files
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.navigation/
+
+# Local configuration files
+local.properties
+
+# Log files
+*.log
+
+# Android Captures
+captures/
+
+# Keystore files (Segurança: Nunca suba suas chaves de produção)
+*.jks
+*.keystore
+*.p12
+
+# Google Services (Se usar Firebase futuramente)
+# google-services.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Mobile tools
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aar
+*.ap_
+*.dex

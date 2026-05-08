@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutQrCode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvTituloQrCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meu QR Code de Acesso"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivQrCode"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:padding="16dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O código expira em: 05:00"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apresente este código na entrada do evento"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btnVoltarDash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_marginTop="32dp" />
+
+</LinearLayout>
