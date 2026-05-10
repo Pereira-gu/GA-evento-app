@@ -56,7 +56,7 @@ public class SelecaoEventoActivity extends AppCompatActivity {
                     EventoAdapter adapter = new EventoAdapter(response.body(), evento -> {
                         Intent intent = new Intent(SelecaoEventoActivity.this, ScannerPorteiroActivity.class);
                         intent.putExtra("EVENTO_ID", evento.getId());
-                        intent.putExtra("EVENTO_NOME", evento.getNome());
+                        intent.putExtra("EVENTO_NOME", evento.getTitulo());
                         startActivity(intent);
                     });
                     rvEventos.setAdapter(adapter);

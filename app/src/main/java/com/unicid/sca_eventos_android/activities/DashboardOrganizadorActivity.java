@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.unicid.sca_eventos_android.R;
@@ -28,15 +29,21 @@ public class DashboardOrganizadorActivity extends AppCompatActivity {
         });
 
         cardInscricoes.setOnClickListener(v -> {
-            // Implementação futura ou redirecionamento para lista de eventos para ver inscritos
-            Toast.makeText(this, "Funcionalidade em desenvolvimento", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, SelecionarEventoInscritosActivity.class));
         });
 
         btnLogout.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("SCA_PREFS", MODE_PRIVATE);
-            prefs.edit().clear().apply();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Sair")
+                    .setMessage("Deseja realmente sair da conta?")
+                    .setPositiveButton("Sair", (dialog, which) -> {
+                        SharedPreferences prefs = getSharedPreferences("SCA_PREFS", MODE_PRIVATE);
+                        prefs.edit().clear().apply();
+                        startActivity(new Intent(this, LoginActivity.class));
+                        finish();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         });
     }
 }

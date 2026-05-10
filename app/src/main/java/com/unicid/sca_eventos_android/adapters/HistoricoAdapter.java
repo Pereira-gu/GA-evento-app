@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Adaptador para exibição do histórico de inscrições/presenças.
+ * Atualizado para bater com os campos do novo endpoint de histórico.
  */
 public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.HistoricoViewHolder> {
 
@@ -32,14 +33,25 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Hist
     @Override
     public void onBindViewHolder(@NonNull HistoricoViewHolder holder, int position) {
         Inscricao inscricao = inscricoes.get(position);
-        holder.tvNome.setText(inscricao.getEvento().getNome());
-        holder.tvData.setText(inscricao.getEvento().getData());
+        holder.tvNome.setText(inscricao.getTituloEvento());
+        holder.tvData.setText(inscricao.getDataEvento());
         
-        if (inscricao.isPresencaConfirmada()) {
-            holder.tvStatus.setText("Presente");
-            holder.tvStatus.setTextColor(Color.parseColor("#388E3C"));
+        long minutosPresente = inscricao.getMinutosPresenca();
+        int cargaTotal = inscricao.getCargaHorariaEvento();
+        
+        if (inscricao.isConcluido()) {
+            holder.tvStatus.setText("✨ Presença Confirmada (100%)");
+            holder.tvStatus.setTextColor(Color.parseColor("#388E3C")); // Verde escuro
+        } else if ("ATIVO".equals(inscricao.getStatusPresenca()) && minutosPresente > 0 && cargaTotal > 0) {
+            double percentual = (minutosPresente * 100.0) / cargaTotal;
+            String progresso = String.format(java.util.Locale.getDefault(), "Em andamento: %.1f%%", percentual);
+            holder.tvStatus.setText(progresso);
+            holder.tvStatus.setTextColor(Color.BLUE);
+        } else if ("PENDENTE".equals(inscricao.getStatusPresenca())) {
+            holder.tvStatus.setText("Aguardando entrada");
+            holder.tvStatus.setTextColor(Color.GRAY);
         } else {
-            holder.tvStatus.setText("Ausente / Pendente");
+            holder.tvStatus.setText(inscricao.getStatusPresenca());
             holder.tvStatus.setTextColor(Color.RED);
         }
     }

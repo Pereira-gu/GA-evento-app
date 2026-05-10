@@ -50,14 +50,18 @@ public class HistoricoAlunoActivity extends AppCompatActivity {
         }
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.listarInscricoes(alunoId).enqueue(new Callback<List<Inscricao>>() {
+        apiService.listarHistoricoAluno(alunoId).enqueue(new Callback<List<Inscricao>>() {
             @Override
             public void onResponse(Call<List<Inscricao>> call, Response<List<Inscricao>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    HistoricoAdapter adapter = new HistoricoAdapter(response.body());
+                    List<Inscricao> lista = response.body();
+                    if (lista.isEmpty()) {
+                        Toast.makeText(HistoricoAlunoActivity.this, "Você ainda não tem inscrições", Toast.LENGTH_SHORT).show();
+                    }
+                    HistoricoAdapter adapter = new HistoricoAdapter(lista);
                     rvHistorico.setAdapter(adapter);
                 } else {
-                    Toast.makeText(HistoricoAlunoActivity.this, "Nenhum histórico encontrado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HistoricoAlunoActivity.this, "Erro ao carregar histórico", Toast.LENGTH_SHORT).show();
                 }
             }
 

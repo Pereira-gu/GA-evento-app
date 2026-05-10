@@ -19,7 +19,7 @@
         android:theme="@style/Theme.SCAEventosAndroid">
 
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +27,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.LoginActivity" android:exported="false" />
         <activity android:name=".activities.RegisterActivity" android:exported="false" />
         <activity android:name=".activities.DashboardAlunoActivity" android:exported="false" />
+        <activity android:name=".activities.DashboardOrganizadorActivity" android:exported="false" />
+        <activity android:name=".activities.GerenciarEventosActivity" android:exported="false" />
         <activity android:name=".activities.ScannerPorteiroActivity" android:exported="false" />
         <activity android:name=".activities.SelecaoEventoActivity" android:exported="false" />
         <activity android:name=".activities.QrCodeAlunoActivity" android:exported="false" />
         <activity android:name=".activities.HistoricoAlunoActivity" android:exported="false" />
-        <activity android:name=".activities.MainActivity" android:exported="false" />
+        <activity android:name=".activities.ListaEventosAlunoActivity" android:exported="false" />
+        <activity android:name=".activities.ListaInscritosActivity" android:exported="false" />
+        <activity android:name=".activities.SelecionarEventoInscritosActivity" android:exported="false" />
 
     </application>
 </manifest>

@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String senha = etSenha.getText().toString().trim();
             if (email.isEmpty() || senha.isEmpty()) {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_fill_fields, Toast.LENGTH_SHORT).show();
             } else {
                 executarLogin(email, senha);
             }
@@ -57,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void executarLogin(String email, String senha) {
+        btnLogin.setEnabled(false);
+        btnLogin.setText(R.string.login_loading);
+
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         JsonObject loginData = new JsonObject();
         loginData.addProperty("email", email);
@@ -65,6 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         apiService.login(loginData).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                btnLogin.setEnabled(true);
+                btnLogin.setText("Entrar");
+
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse user = response.body();
 
@@ -75,16 +81,18 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putBoolean("USER_BADGE_OURO", user.isBadgeOuro());
                     editor.apply();
 
-                    Toast.makeText(LoginActivity.this, "Bem-vindo, " + user.getNome(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.login_welcome, user.getNome()), Toast.LENGTH_SHORT).show();
                     direcionarUsuario(user.getPerfil());
                 } else {
-                    Toast.makeText(LoginActivity.this, "Credenciais inválidas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.login_invalid_credentials, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Erro de rede", Toast.LENGTH_LONG).show();
+                btnLogin.setEnabled(true);
+                btnLogin.setText("Entrar");
+                Toast.makeText(LoginActivity.this, R.string.error_network, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -93,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent;
         if ("PORTEIRO".equals(perfil)) {
             intent = new Intent(this, SelecaoEventoActivity.class);
+        } else if ("ORGANIZADOR".equals(perfil)) {
+            intent = new Intent(this, DashboardOrganizadorActivity.class);
         } else {
             intent = new Intent(this, DashboardAlunoActivity.class);
         }

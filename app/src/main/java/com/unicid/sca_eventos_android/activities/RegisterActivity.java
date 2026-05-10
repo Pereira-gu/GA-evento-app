@@ -41,14 +41,16 @@ public class RegisterActivity extends AppCompatActivity {
             String perfil = rbAluno.isChecked() ? "CLIENTE" : "PORTEIRO";
 
             if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_fill_fields, Toast.LENGTH_SHORT).show();
             } else {
-                enviarRegistro(nome, email, senha, perfil);
+                btnRegistrar.setEnabled(false);
+                btnRegistrar.setText(R.string.msg_processing);
+                enviarRegistro(nome, email, senha, perfil, btnRegistrar);
             }
         });
     }
 
-    private void enviarRegistro(String nome, String email, String senha, String perfil) {
+    private void enviarRegistro(String nome, String email, String senha, String perfil, Button btnRegistrar) {
         JsonObject json = new JsonObject();
         json.addProperty("nome", nome);
         json.addProperty("email", email);
@@ -58,18 +60,23 @@ public class RegisterActivity extends AppCompatActivity {
         ApiClient.getClient().create(ApiService.class).registrar(json).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                btnRegistrar.setEnabled(true);
+                btnRegistrar.setText(R.string.action_register);
+                
                 if (response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Registro solicitado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, R.string.msg_register_success, Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Log.e("SCA_ERRO", "Código de erro: " + response.code());
-                    Toast.makeText(RegisterActivity.this, "Erro no servidor: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.error_server, response.code()), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Erro de rede: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                btnRegistrar.setEnabled(true);
+                btnRegistrar.setText(R.string.action_register);
+                Toast.makeText(RegisterActivity.this, getString(R.string.error_network) + ": " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

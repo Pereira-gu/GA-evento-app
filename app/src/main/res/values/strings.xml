@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">SCA-Eventos-Android</string>
+
+    <!-- Login & Register -->
+    <string name="login_loading">Carregando...</string>
+    <string name="login_welcome">Bem-vindo, %1$s</string>
+    <string name="login_invalid_credentials">Credenciais inválidas</string>
+    <string name="error_network">Erro de rede</string>
+    <string name="error_fill_fields">Preencha todos os campos</string>
+    <string name="msg_processing">Processando...</string>
+    <string name="action_register">Registrar</string>
+    <string name="msg_register_success">Registro solicitado com sucesso!</string>
+    <string name="error_server">Erro no servidor: %1$d</string>
+
+    <!-- Dashboard -->
+    <string name="dash_welcome">Olá, %1$s!</string>
+    <string name="dash_welcome_gold">Olá, %1$s! ✨</string>
+    <string name="dialog_logout_title">Sair</string>
+    <string name="dialog_logout_msg">Deseja realmente sair da conta?</string>
+    <string name="action_logout">Sair</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_close">Fechar</string>
+
+    <!-- Eventos -->
+    <string name="error_load_events">Erro ao carregar eventos</string>
+    <string name="msg_no_events">Nenhum evento disponível no momento</string>
+    <string name="msg_inscription_success">Inscrição realizada com sucesso!</string>
+    <string name="msg_already_inscribed">Você já está inscrito neste evento!</string>
+    <string name="error_inscription">Erro ao se inscrever: %1$d</string>
+    <string name="error_user_not_found">Erro: Usuário não identificado</string>
+    <string name="label_local">📍 Local: %1$s</string>
+    <string name="label_date">📅 Data: %1$s</string>
+    <string name="label_workload">⏳ Carga Horária: %1$s</string>
+    <string name="action_subscribe">Inscrever-se</string>
+    <string name="date_at"> às </string>
+
+    <!-- Histórico -->
+    <string name="msg_no_inscriptions">Você ainda não tem inscrições</string>
+    <string name="error_load_history">Erro ao carregar histórico</string>
+    <string name="status_confirmed">✨ Presença Confirmada (100%)</string>
+    <string name="status_in_progress">Em andamento: %.1f%%</string>
+    <string name="status_waiting">Aguardando entrada</string>
+    <string name="qr_expires_in">O código expira em: %02d:%02d</string>
 </resources>

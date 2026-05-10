@@ -13,13 +13,13 @@ import com.unicid.sca_eventos_android.R;
 
 /**
  * Painel principal do Aluno.
- * Exibe opções de acesso ao QR Code e Histórico de presenças.
+ * Exibe opções de acesso ao QR Code, Lista de Eventos e Histórico de presenças.
  */
 public class DashboardAlunoActivity extends AppCompatActivity {
 
     private TextView tvBoasVindas;
     private LinearLayout layoutDashboard;
-    private MaterialCardView cardQrCode, cardHistorico;
+    private MaterialCardView cardQrCode, cardHistorico, cardEventos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class DashboardAlunoActivity extends AppCompatActivity {
         tvBoasVindas = findViewById(R.id.tvBoasVindas);
         layoutDashboard = findViewById(R.id.layoutDashboard);
         cardQrCode = findViewById(R.id.cardQrCode);
+        cardEventos = findViewById(R.id.cardEventos);
         cardHistorico = findViewById(R.id.cardHistorico);
         Button btnLogout = findViewById(R.id.btnLogout);
 
@@ -38,14 +39,18 @@ public class DashboardAlunoActivity extends AppCompatActivity {
 
         if (isGold) {
             layoutDashboard.setBackgroundColor(Color.parseColor("#FFD700"));
-            tvBoasVindas.setText("Olá, " + nome + "! ✨");
+            tvBoasVindas.setText(getString(R.string.dash_welcome_gold, nome));
             tvBoasVindas.setTextColor(Color.BLACK);
         } else {
-            tvBoasVindas.setText("Olá, " + nome + "!");
+            tvBoasVindas.setText(getString(R.string.dash_welcome, nome));
         }
 
         cardQrCode.setOnClickListener(v -> {
             startActivity(new Intent(this, QrCodeAlunoActivity.class));
+        });
+
+        cardEventos.setOnClickListener(v -> {
+            startActivity(new Intent(this, ListaEventosAlunoActivity.class));
         });
 
         cardHistorico.setOnClickListener(v -> {
@@ -53,9 +58,16 @@ public class DashboardAlunoActivity extends AppCompatActivity {
         });
 
         btnLogout.setOnClickListener(v -> {
-            prefs.edit().clear().apply();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle(R.string.dialog_logout_title)
+                    .setMessage(R.string.dialog_logout_msg)
+                    .setPositiveButton(R.string.action_logout, (dialog, which) -> {
+                        prefs.edit().clear().apply();
+                        startActivity(new Intent(this, LoginActivity.class));
+                        finish();
+                    })
+                    .setNegativeButton(R.string.action_cancel, null)
+                    .show();
         });
     }
 }
