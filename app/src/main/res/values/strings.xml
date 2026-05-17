@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SCA-Eventos-Android</string>
+    <string name="app_name">EasyPres</string>
 
     <!-- Login & Register -->
     <string name="login_loading">Carregando...</string>
@@ -15,6 +15,7 @@
     <!-- Dashboard -->
     <string name="dash_welcome">Olá, %1$s!</string>
     <string name="dash_welcome_gold">Olá, %1$s! ✨</string>
+    <string name="label_constancy">Você possui Selo de Constância! 🏆</string>
     <string name="dialog_logout_title">Sair</string>
     <string name="dialog_logout_msg">Deseja realmente sair da conta?</string>
     <string name="action_logout">Sair</string>
@@ -41,4 +42,20 @@
     <string name="status_in_progress">Em andamento: %.1f%%</string>
     <string name="status_waiting">Aguardando entrada</string>
     <string name="qr_expires_in">O código expira em: %02d:%02d</string>
+
+    <!-- CRUD Eventos -->
+    <string name="title_new_event">Novo Evento</string>
+    <string name="title_edit_event">Editar Evento</string>
+    <string name="label_title_hint">Título do Evento</string>
+    <string name="label_local_hint">Local</string>
+    <string name="label_date_time_hint">Data e Hora</string>
+    <string name="label_workload_hint">Carga Horária (minutos)</string>
+    <string name="msg_error_required">Este campo é obrigatório</string>
+    <string name="action_save">Salvar</string>
+    <string name="msg_event_created">Evento criado com sucesso!</string>
+    <string name="msg_event_updated">Evento atualizado com sucesso!</string>
+    <string name="msg_event_deleted">Evento excluído com sucesso!</string>
+    <string name="title_delete_event">Excluir Evento</string>
+    <string name="msg_confirm_delete">Deseja realmente excluir o evento \'%1$s\'?\n\nEsta ação não pode ser desfeita.</string>
+    <string name="action_delete">Excluir</string>
 </resources>

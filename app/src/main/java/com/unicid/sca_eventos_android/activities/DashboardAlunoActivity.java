@@ -38,9 +38,8 @@ public class DashboardAlunoActivity extends AppCompatActivity {
         boolean isGold = prefs.getBoolean("USER_BADGE_OURO", false);
 
         if (isGold) {
-            layoutDashboard.setBackgroundColor(Color.parseColor("#FFD700"));
             tvBoasVindas.setText(getString(R.string.dash_welcome_gold, nome));
-            tvBoasVindas.setTextColor(Color.BLACK);
+            findViewById(R.id.cardConstancia).setVisibility(android.view.View.VISIBLE);
         } else {
             tvBoasVindas.setText(getString(R.string.dash_welcome, nome));
         }

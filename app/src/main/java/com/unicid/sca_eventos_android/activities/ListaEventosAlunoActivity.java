@@ -47,6 +47,7 @@ public class ListaEventosAlunoActivity extends AppCompatActivity {
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Evento> eventos = response.body();
+
                     if (eventos.isEmpty()) {
                         Toast.makeText(ListaEventosAlunoActivity.this, R.string.msg_no_events, Toast.LENGTH_LONG).show();
                     }

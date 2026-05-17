@@ -19,6 +19,20 @@ public class Evento {
         this.cargaHoraria = cargaHoraria;
     }
 
+    // Construtor para novos eventos (sem ID)
+    public Evento(String titulo, String local, String dataInicio, int cargaHoraria) {
+        this.titulo = titulo;
+        this.local = local;
+        this.dataInicio = dataInicio;
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public void setId(String id) { this.id = id; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setLocal(String local) { this.local = local; }
+    public void setDataInicio(String dataInicio) { this.dataInicio = dataInicio; }
+    public void setCargaHoraria(int cargaHoraria) { this.cargaHoraria = cargaHoraria; }
+
     public String getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getLocal() { return local; }

@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String senha = etSenha.getText().toString().trim();
+
             if (email.isEmpty() || senha.isEmpty()) {
                 Toast.makeText(this, R.string.error_fill_fields, Toast.LENGTH_SHORT).show();
             } else {

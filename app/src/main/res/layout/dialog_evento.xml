@@ -6,9 +6,10 @@
     android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título do Evento"
+        android:hint="@string/label_title_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginBottom="12dp">
 
@@ -20,9 +21,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilLocal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Local"
+        android:hint="@string/label_local_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginBottom="12dp">
 
@@ -34,9 +36,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data (YYYY-MM-DDTHH:MM:SS)"
+        android:hint="@string/label_date_time_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginBottom="12dp">
 
@@ -44,13 +47,16 @@
             android:id="@+id/etDataEventoDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="datetime" />
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Carga Horária (minutos)"
+        android:hint="@string/label_workload_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText

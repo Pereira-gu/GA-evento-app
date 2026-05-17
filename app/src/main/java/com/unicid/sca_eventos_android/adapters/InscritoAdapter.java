@@ -38,8 +38,10 @@ public class InscritoAdapter extends RecyclerView.Adapter<InscritoAdapter.Inscri
         holder.tvEmail.setText(email);
         holder.tvStatus.setText(status);
 
-        if ("ATIVO".equals(status) || "CONCLUIDO".equals(status)) {
-            holder.tvStatus.setBackgroundColor(Color.parseColor("#4CAF50")); // Verde
+        if ("CONCLUIDO".equals(status)) {
+            holder.tvStatus.setBackgroundColor(Color.parseColor("#4CAF50")); // Verde para Completo
+        } else if ("ATIVO".equals(status)) {
+            holder.tvStatus.setBackgroundColor(Color.parseColor("#FF9800")); // Laranja para Ativo/Em andamento
         } else {
             holder.tvStatus.setBackgroundColor(Color.GRAY);
         }
