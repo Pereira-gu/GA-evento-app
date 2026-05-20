@@ -12,7 +12,10 @@ import com.unicid.sca_eventos_android.R;
 import com.unicid.sca_eventos_android.adapters.InscritoAdapter;
 import com.unicid.sca_eventos_android.api.ApiClient;
 import com.unicid.sca_eventos_android.api.ApiService;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +55,21 @@ public class ListaInscritosActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<JsonObject>> call, Response<List<JsonObject>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    InscritoAdapter adapter = new InscritoAdapter(response.body());
+                    List<JsonObject> todosInscritos = response.body();
+                    Map<String, JsonObject> inscritosUnicos = new LinkedHashMap<>();
+
+                    // Filtra duplicados mantendo a última ocorrência (estado mais recente)
+                    for (JsonObject inscrito : todosInscritos) {
+                        String email = inscrito.has("emailUsuario") ? inscrito.get("emailUsuario").getAsString() : "";
+                        if (!email.isEmpty()) {
+                            inscritosUnicos.put(email, inscrito);
+                        } else {
+                            // Se não tiver email, adiciona usando um id temporário para não perder o registro
+                            inscritosUnicos.put("sem_email_" + System.nanoTime(), inscrito);
+                        }
+                    }
+
+                    InscritoAdapter adapter = new InscritoAdapter(new ArrayList<>(inscritosUnicos.values()));
                     rvInscritos.setAdapter(adapter);
                 } else {
                     Toast.makeText(ListaInscritosActivity.this, "Erro ao carregar inscritos", Toast.LENGTH_SHORT).show();
