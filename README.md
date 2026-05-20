@@ -13,6 +13,17 @@ O **EasyPres** (SCA-Eventos) é uma solução mobile completa para a gestão de 
 
 O projeto resolve o problema de filas e burocracia na marcação de presença em palestras e workshops acadêmicos, utilizando geolocalização (implícita pelo scanner) e validação temporal para garantir a integridade das horas complementares.
 
+### 📸 Screenshots
+
+<p align="center">
+  <img src="media/tela_inicial.png" width="180" alt="Tela Inicial" />
+  <img src="media/tela_eventos.png" width="180" alt="Lista de Eventos" />
+  <img src="media/tela_qr_code.png" width="180" alt="QR Code de Acesso" />
+  <br />
+  <img src="media/tela_historico_aluno.png" width="180" alt="Histórico do Aluno" />
+  <img src="media/tela_admin.png" width="180" alt="Painel Administrativo" />
+</p>
+
 ### ✨ Funcionalidades Principais
 
 #### 👨‍🎓 Módulo do Aluno
