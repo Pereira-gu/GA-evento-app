@@ -92,4 +92,4 @@ app/src/main/java/com/unicid/sca_eventos_android/
 Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
-<p align="center">Desenvolvido por <strong>Guilherme Pereira</strong></p>
+<p align="center">Desenvolvido por <strong>Gustavo Pereira</strong></p>
